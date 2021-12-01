@@ -16,22 +16,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip ambientClip;		//The background ambient sound
     public AudioClip musicClip;         //The background music 
 
-    [Header("Stings")]
-    public AudioClip doorStingClip;     //The sting played on door interact
-
     [Header("Player")]
     public AudioClip[] woodStepClips;       //The wood surface footstep sound effects
     public AudioClip[] defaultStepClips;    //The default footstep sound effects
 
-    [Header("Voice")]
-    public AudioClip doorVoiceClip;      //The player door interact voice
-
     [Header("Mixer Groups")]
-    public AudioMixerGroup ambientGroup;//The ambient mixer group
-    public AudioMixerGroup musicGroup;  //The music mixer group
-    public AudioMixerGroup stingGroup;  //The sting mixer group
-    public AudioMixerGroup playerGroup; //The player mixer group
-    public AudioMixerGroup voiceGroup;  //The voice mixer group
+    public AudioMixerGroup ambientGroup;    //The ambient mixer group
+    public AudioMixerGroup musicGroup;      //The music mixer group
+    public AudioMixerGroup stingGroup;      //The sting mixer group
+    public AudioMixerGroup playerGroup;     //The player mixer group
+    public AudioMixerGroup voiceGroup;      //The voice mixer group
 
     AudioSource ambientSource;			//Reference to the generated ambient Audio Source
     AudioSource musicSource;            //Reference to the generated music Audio Source
@@ -83,7 +77,9 @@ public class AudioManager : MonoBehaviour
     {
         //If there is no current AudioManager, exit
         if (current == null)
+        {
             return;
+        }
 
         //Set the clip for ambient audio, tell it to loop, and then tell it to play
         current.ambientSource.clip = current.ambientClip;
@@ -107,7 +103,9 @@ public class AudioManager : MonoBehaviour
         //If there is no current AudioManager or the player source is already playing
         //a clip, exit 
         if (current == null || current.playerSource.isPlaying)
+        {
             return;
+        }
 
         //Check surface
         if (current.currentSurface == SurfaceFootsteps.Wood)
@@ -130,18 +128,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlayDoorAudio()
+    public static void PlayStingAudio(AudioClip clip)
     {
         //If there is no current AudioManager, exit
         if (current == null)
+        {
             return;
+        }
 
-        //Set the orb sting clip and tell the source to play
-        current.stingSource.clip = current.doorStingClip;
+        //Set the sting clip and tell the source to play
+        current.stingSource.clip = clip;
         current.stingSource.Play();
+    }
 
-        //Set the orb voice clip and tell the source to play
-        current.voiceSource.clip = current.doorVoiceClip;
+    public static void PlayVoiceAudio(AudioClip clip)
+    {
+        //If there is no current AudioManager, exit
+        if (current == null)
+        {
+            return;
+        }
+
+        //Set the voice clip and tell the source to play
+        current.voiceSource.clip = clip;
         current.voiceSource.Play();
     }
 }

@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     static GameManager current;
 
     [SerializeField]
-    float waitTimeInDialog;
+    float waitTimeInDialog;         //Wait between dialog lines (seconds)
+    [SerializeField]
+    float waitTimeInDescrption;     //Wait after description is shown (seconds)
 
     PlayerController currentPlayer;
     Interactable hoveredInteractable;
@@ -138,6 +140,26 @@ public class GameManager : MonoBehaviour
         //Hide dispaly over heads and enable input
         currentPlayer.HideDescriptionText();
         npc.HideDialogText();
+        takeInput = true;
+    }
+
+    public static void ReadDescription(InteractableHotspot hotspot)
+    {
+        current.StartCoroutine("ReadDescriptionRoutine", hotspot);
+    }
+
+    IEnumerator ReadDescriptionRoutine(InteractableHotspot hotspot)
+    {
+        //Disable input
+        takeInput = false;
+        yield return new WaitForSeconds(0.3f);
+
+        //Set description text over player head
+        currentPlayer.SetDescriptionText(hotspot.GetHotspotData().description);
+        yield return new WaitForSeconds(waitTimeInDescrption);
+
+        //Hide dispaly over head and enable input
+        currentPlayer.HideDescriptionText();
         takeInput = true;
     }
 }
