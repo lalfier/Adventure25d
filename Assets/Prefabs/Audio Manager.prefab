@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1882779308187514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4541103729333886}
+  - component: {fileID: 114568543676866764}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4541103729333886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882779308187514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114568543676866764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882779308187514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7fa73fe768b0e47abb341b35d43738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientClip: {fileID: 0}
+  musicClip: {fileID: 0}
+  doorStingClip: {fileID: 0}
+  woodStepClips:
+  - {fileID: 8300000, guid: 781ab33301f7d9842867a2970b9f8029, type: 3}
+  - {fileID: 8300000, guid: 16a943bd4c9b2014e887102abc527138, type: 3}
+  - {fileID: 8300000, guid: 6f7f4b7d7f77ebc4fb6d1dabc67b5c4e, type: 3}
+  - {fileID: 8300000, guid: 653b05ae4ae92734ea401d3362060786, type: 3}
+  defaultStepClips:
+  - {fileID: 8300000, guid: c5b6b029992db8f4289021b21b09dd86, type: 3}
+  - {fileID: 8300000, guid: 74b691891b62f1046b174e200a23060e, type: 3}
+  - {fileID: 8300000, guid: 3f6ef45e03531a84294397df80b09da3, type: 3}
+  doorVoiceClip: {fileID: 0}
+  ambientGroup: {fileID: 243375458998414286, guid: fbc5536644c39724a8b8b38c56b28343,
+    type: 2}
+  musicGroup: {fileID: 243230206115637112, guid: fbc5536644c39724a8b8b38c56b28343,
+    type: 2}
+  stingGroup: {fileID: 243408326399804062, guid: fbc5536644c39724a8b8b38c56b28343,
+    type: 2}
+  playerGroup: {fileID: 243956182141439812, guid: fbc5536644c39724a8b8b38c56b28343,
+    type: 2}
+  voiceGroup: {fileID: 243908835443367434, guid: fbc5536644c39724a8b8b38c56b28343,
+    type: 2}

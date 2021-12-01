@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac2e6a8f05cb6f4da1ffcb788d80128, type: 3}
+  m_Name: NpcOldMan
+  m_EditorClassIdentifier: 
+  npcName: Old Man
+  dialog:
+  - You dont look like you are from around here.
+  - I came from Newton.
+  - Newton, eh? I heard there is trouble brewing down there.
+  - I havent heard about any trouble.
+  - Dont you worry about it. Say, do you have something to eat?
+  - No old man, but i have to go now. Good day.
+  playerStartsDialog: 0
+  combineItemName: Ring3
