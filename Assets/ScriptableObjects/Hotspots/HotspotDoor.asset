@@ -15,3 +15,4 @@ MonoBehaviour:
   hotspotName: Door
   description: Rusty door. I cant open it.
   combineItemName: Door key
+  stingSound: {fileID: 8300000, guid: 05d4e9248717cc746b2b0c774f0f068e, type: 3}

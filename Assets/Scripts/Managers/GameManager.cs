@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
     {
         //Disable input
         takeInput = false;
+        AudioManager.PlayStingAudio(npc.GetNpcData().stingSound);
         yield return new WaitForSeconds(0.3f);
 
         //Go through dialog array
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
     {
         //Disable input
         takeInput = false;
+        AudioManager.PlayStingAudio(hotspot.GetHotspotData().stingSound);
         yield return new WaitForSeconds(0.3f);
 
         //Set description text over player head

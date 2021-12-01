@@ -7,4 +7,5 @@ public class SONpcData  : ScriptableObject
     public string[] dialog;
     public bool playerStartsDialog;
     public string combineItemName;
+    public AudioClip stingSound;
 }

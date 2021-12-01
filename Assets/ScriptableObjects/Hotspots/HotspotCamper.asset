@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HotspotCamper
   m_EditorClassIdentifier: 
   hotspotName: Camper
-  description: Abandoned camper. It seems to be locked.
+  description: Abandoned fastfood camper. It seems to be locked.
   combineItemName: Camper key
+  stingSound: {fileID: 8300000, guid: c23b94dcd0be97b4ab7c51efd905cd9c, type: 3}

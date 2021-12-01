@@ -6,4 +6,5 @@ public class SOHotspotData : ScriptableObject
     public string hotspotName;
     public string description;
     public string combineItemName;
+    public AudioClip stingSound;
 }

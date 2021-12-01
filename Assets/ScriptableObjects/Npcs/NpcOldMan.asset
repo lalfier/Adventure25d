@@ -22,3 +22,4 @@ MonoBehaviour:
   - No old man, but i have to go now. Good day.
   playerStartsDialog: 0
   combineItemName: Bread
+  stingSound: {fileID: 8300000, guid: a88eb26cec552e54a8d1da4578bf04df, type: 3}

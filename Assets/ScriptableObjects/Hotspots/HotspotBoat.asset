@@ -15,3 +15,4 @@ MonoBehaviour:
   hotspotName: Boat
   description: Old boat with tarp.
   combineItemName: Knife
+  stingSound: {fileID: 8300000, guid: bf1981bf27f11d84a80c5123486ecec9, type: 3}
