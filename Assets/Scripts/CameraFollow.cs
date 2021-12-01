@@ -28,6 +28,6 @@ public class CameraFollow : MonoBehaviour
         transform.position = Vector3.Lerp(startPos, endPos, timeOffset * Time.deltaTime);
 
         //Clamp camera to screen size
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit/Camera.main.aspect, rightLimit / Camera.main.aspect), transform.position.y, transform.position.z);
     }
 }

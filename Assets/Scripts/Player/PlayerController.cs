@@ -21,11 +21,14 @@ public class PlayerController : MonoBehaviour
         //Get components
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+    }
 
+    void Start()
+    {
         //Set reference to game manager
         GameManager.SetPlayer(this);
     }
-    
+
     void Update()
     {
         //Change agent speed based on Z postition
