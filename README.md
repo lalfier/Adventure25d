@@ -14,6 +14,6 @@ Point and Click 2.5d adventure game sample with one scene.
 	- short and very simple dialog with npc
 	- simple inventory system and ability to combine items
 
-**Unity 2019.4.23f1 LTS**
+**Unity 2019.4.26f1 LTS**
 
 <img src="./cover.jpg">
