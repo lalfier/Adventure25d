@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f13fedd812ec840a8e8944a026ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: de4ca93b8568cc5419e95de4393f5aa7, type: 2}
   waitTimeInDialog: 3
   waitTimeInDescrption: 3
+  waitTimeInCombine: 3

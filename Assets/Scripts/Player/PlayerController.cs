@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseLayer))
         {
             GameManager.ResetCurrentInteractable();
+            GameManager.ResetSelectedInteractableItem();
             agent.SetDestination(hit.point);
             nextPosition = hit.point;
             isWalking = true;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum InteractableType
@@ -6,10 +7,10 @@ public enum InteractableType
     None,
     Hotspot,
     Npc,
-    Inventory
+    Item
 }
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public InteractableType type;   //Type of interactable
     public Text nameText;           //Display name
@@ -54,5 +55,17 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerStay(Collider other)
     {
+    }
+
+    //For UI
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnMouseEnter();
+    }
+
+    //For UI
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnMouseExit();
     }
 }

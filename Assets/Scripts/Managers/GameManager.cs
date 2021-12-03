@@ -7,13 +7,18 @@ public class GameManager : MonoBehaviour
     static GameManager current;
 
     [SerializeField]
+    SOInventoryData inventory;      //Player inventory
+    [SerializeField]
     float waitTimeInDialog;         //Wait between dialog lines (seconds)
     [SerializeField]
     float waitTimeInDescrption;     //Wait after description is shown (seconds)
+    [SerializeField]
+    float waitTimeInCombine;        //Wait after description is shown (seconds)
 
     PlayerController currentPlayer;
     Interactable hoveredInteractable;
     Interactable currentInteractable;
+    InteractableItem selectedInteractableItem;
     bool takeInput = true;
 
     void Awake()
@@ -36,19 +41,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //Dont take any input
+        //Do not take any input
         if (!takeInput)
         {
             return;
         }
-
-        //Move to pos on left mouse click
+        
         if (Input.GetMouseButtonDown(0))
         {
-            currentPlayer.MoveToPosition();
+            if (hoveredInteractable != null && hoveredInteractable.type == InteractableType.Item)
+            {
+                //Set selected inventory item
+                selectedInteractableItem = (InteractableItem)hoveredInteractable;
+                Cursor.SetCursor(selectedInteractableItem.GetItemData().dragIcon, Vector2.zero, CursorMode.Auto);
+            }
+            else
+            {
+                //Move to pos on left mouse click
+                currentPlayer.MoveToPosition();
+            }            
         }
-
-        //Move to interactable on right mouse click
+        
         if (Input.GetMouseButtonDown(1))
         {
             if (hoveredInteractable == null)
@@ -56,10 +69,26 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (hoveredInteractable.type != InteractableType.Inventory)
+            if (hoveredInteractable.type != InteractableType.Item)
             {
+                //Move to interactable on right mouse click
                 currentInteractable = hoveredInteractable;
                 currentPlayer.MoveToInteractable(currentInteractable);
+            }
+            else
+            {
+                //If right click on inventory item
+                if(selectedInteractableItem == null)
+                {
+                    //Read description
+                    ReadDescription((InteractableItem)hoveredInteractable);
+                }
+                else
+                {
+                    //Combine items
+                    InteractableItem hoveredItem = (InteractableItem)hoveredInteractable;
+                    CombineInteractables(hoveredItem.GetItemData().combineItemName);
+                }
             }
         }
     }
@@ -91,6 +120,25 @@ public class GameManager : MonoBehaviour
     {
         //Set current interactable to null
         current.currentInteractable = null;
+    }
+
+    public static InteractableItem GetSelectedInteractableItem()
+    {
+        //Return selected interactable item
+        return current.selectedInteractableItem;
+    }
+
+    public static void ResetSelectedInteractableItem()
+    {
+        //Set selected interactable item to null
+        current.selectedInteractableItem = null;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    public static SOInventoryData GetInventory()
+    {
+        //Return inventory
+        return current.inventory;
     }
 
     public static void StartDialog(InteractableNpc npc)
@@ -138,7 +186,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(waitTimeInDialog);
         }
 
-        //Hide dispaly over heads and enable input
+        //Hide display over heads and enable input
         currentPlayer.HideDescriptionText();
         npc.HideDialogText();
         takeInput = true;
@@ -160,7 +208,59 @@ public class GameManager : MonoBehaviour
         currentPlayer.SetDescriptionText(hotspot.GetHotspotData().description);
         yield return new WaitForSeconds(waitTimeInDescrption);
 
-        //Hide dispaly over head and enable input
+        //Hide display over head and enable input
+        currentPlayer.HideDescriptionText();
+        takeInput = true;
+    }
+
+    public static void ReadDescription(InteractableItem item)
+    {
+        current.StartCoroutine("ReadDescriptionRoutine", item);
+    }
+
+    IEnumerator ReadDescriptionRoutine(InteractableItem item)
+    {
+        //Disable input
+        takeInput = false;
+        AudioManager.PlayStingAudio(item.GetItemData().stingSound);
+        yield return new WaitForSeconds(0.3f);
+
+        //Set description text over player head
+        currentPlayer.SetDescriptionText(item.GetItemData().description);
+        yield return new WaitForSeconds(waitTimeInDescrption);
+
+        //Hide display over head and enable input
+        currentPlayer.HideDescriptionText();
+        takeInput = true;
+    }
+
+    public static void CombineInteractables(string itemToCobine)
+    {
+        current.StartCoroutine("CombineInteractablesRoutine", itemToCobine);
+    }
+
+    IEnumerator CombineInteractablesRoutine(string itemToCobine)
+    {
+        //Disable input
+        takeInput = false;
+        AudioManager.PlayStingAudio(selectedInteractableItem.GetItemData().stingSound);
+        yield return new WaitForSeconds(0.3f);
+                
+        if (itemToCobine.Equals(selectedInteractableItem.GetItemData().itemName))
+        {
+            //Set combine text over player head
+            currentPlayer.SetDescriptionText(selectedInteractableItem.GetItemData().OnCombineSuccess);
+            //Do logic for combine
+        }
+        else
+        {
+            currentPlayer.SetDescriptionText("I can't use this here!");
+        }
+        ResetSelectedInteractableItem();
+
+        yield return new WaitForSeconds(waitTimeInCombine);
+
+        //Hide display over head, reset selected item and enable input
         currentPlayer.HideDescriptionText();
         takeInput = true;
     }

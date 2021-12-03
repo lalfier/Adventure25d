@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class InteractableHotspot : Interactable
 {
@@ -30,7 +29,14 @@ public class InteractableHotspot : Interactable
             player.GetComponent<PlayerController>().StopPlayer();
             GameManager.ResetCurrentInteractable();
             OnMouseExit();
-            GameManager.ReadDescription(this);
+            if(GameManager.GetSelectedInteractableItem() == null)
+            {
+                GameManager.ReadDescription(this);
+            }
+            else
+            {
+                GameManager.CombineInteractables(hotspotData.combineItemName);
+            }            
         }
     }
 

@@ -32,7 +32,14 @@ public class InteractableNpc : Interactable
             player.GetComponent<PlayerController>().StopPlayer();
             GameManager.ResetCurrentInteractable();
             OnMouseExit();
-            GameManager.StartDialog(this);
+            if (GameManager.GetSelectedInteractableItem() == null)
+            {
+                GameManager.StartDialog(this);
+            }
+            else
+            {
+                GameManager.CombineInteractables(npcData.combineItemName);
+            }            
         }
     }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330cc07114776294da1d979c31a242ff, type: 3}
+  m_Name: ItemSword
+  m_EditorClassIdentifier: 
+  itemName: Sword
+  description: Old sword with key like hilt.
+  combineItemName: Rope
+  OnCombineSuccess: 
+  stingSound: {fileID: 0}
+  inventoryPrefab: {fileID: 2771843104093893306, guid: 183348d398a0a3241bdd960a2cc01899,
+    type: 3}
+  dragIcon: {fileID: 2800000, guid: 63cfa3f049998b04298e0933a3a547c2, type: 3}
