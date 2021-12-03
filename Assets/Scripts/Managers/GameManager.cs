@@ -78,15 +78,16 @@ public class GameManager : MonoBehaviour
             else
             {
                 //If right click on inventory item
+                InteractableItem hoveredItem = (InteractableItem)hoveredInteractable;
+                hoveredInteractable.OnPointerExit(null);
                 if(selectedInteractableItem == null)
                 {
                     //Read description
-                    ReadDescription((InteractableItem)hoveredInteractable);
+                    ReadDescription(hoveredItem);
                 }
                 else
                 {
-                    //Combine items
-                    InteractableItem hoveredItem = (InteractableItem)hoveredInteractable;
+                    //Combine items                    
                     CombineInteractables(hoveredItem.GetItemData().combineItemName);
                 }
             }
@@ -243,24 +244,25 @@ public class GameManager : MonoBehaviour
     {
         //Disable input
         takeInput = false;
-        AudioManager.PlayStingAudio(selectedInteractableItem.GetItemData().stingSound);
+        SOItemData selectedItemData = selectedInteractableItem.GetItemData();
+        AudioManager.PlayStingAudio(selectedItemData.stingSound);
+        ResetSelectedInteractableItem();
         yield return new WaitForSeconds(0.3f);
-                
-        if (itemToCobine.Equals(selectedInteractableItem.GetItemData().itemName))
+
+        if (itemToCobine.Equals(selectedItemData.itemName))
         {
             //Set combine text over player head
-            currentPlayer.SetDescriptionText(selectedInteractableItem.GetItemData().OnCombineSuccess);
+            currentPlayer.SetDescriptionText(selectedItemData.OnCombineSuccess);
             //Do logic for combine
         }
         else
         {
             currentPlayer.SetDescriptionText("I can't use this here!");
-        }
-        ResetSelectedInteractableItem();
+        }        
         yield return new WaitForSeconds(waitTimeInCombine);
 
         //Hide display over head, reset selected item and enable input
-        currentPlayer.HideDescriptionText();
+        currentPlayer.HideDescriptionText();        
         takeInput = true;
     }
 }
