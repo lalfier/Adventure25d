@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float waitTimeInDescrption;     //Wait after description is shown (seconds)
     [SerializeField]
-    float waitTimeInCombine;        //Wait after description is shown (seconds)
+    float waitTimeInCombine;        //Wait after combine is shown (seconds)
 
     PlayerController currentPlayer;
     Interactable hoveredInteractable;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         {
             if (hoveredInteractable != null && hoveredInteractable.type == InteractableType.Item)
             {
-                //Set selected inventory item
+                //Set selected inventory item and mouse cursor icon
                 selectedInteractableItem = (InteractableItem)hoveredInteractable;
                 Cursor.SetCursor(selectedInteractableItem.GetItemData().dragIcon, Vector2.zero, CursorMode.Auto);
             }
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetSelectedInteractableItem()
     {
-        //Set selected interactable item to null
+        //Set selected interactable item to null and reset mouse cursor
         current.selectedInteractableItem = null;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
@@ -257,7 +257,6 @@ public class GameManager : MonoBehaviour
             currentPlayer.SetDescriptionText("I can't use this here!");
         }
         ResetSelectedInteractableItem();
-
         yield return new WaitForSeconds(waitTimeInCombine);
 
         //Hide display over head, reset selected item and enable input

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ModelScale : MonoBehaviour
+public class ModelController : MonoBehaviour
 {
     [SerializeField]
     float sizeNearBackground;   //Model scale when near background (Z = 0)
@@ -11,13 +11,13 @@ public class ModelScale : MonoBehaviour
 
     void Update()
     {
-        //Change local scale based on Z postition
+        //Change local scale based on Z position
         transform.localScale = Vector3.one * (Mathf.Abs(transform.position.z / 10) + sizeNearBackground);
 
-        //Rotate dispaly towards camera
+        //Rotate display towards camera
         displayOverHead.transform.rotation = Camera.main.transform.rotation;
 
-        //Set dispaly position over head depending on scale
+        //Set display position over head depending on scale
         displayOverHead.transform.position = new Vector3(displayOverHead.transform.position.x, transform.localScale.y * offsetYDisplay, displayOverHead.transform.position.z);
     }
 }
