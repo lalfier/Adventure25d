@@ -9,11 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask mouseLayer;       //Layer to register mouse clicks
     [SerializeField]
-    Text descriptionText;       //Display desctription text(dialogs, items, ...)
+    Text descriptionText;       //Display description text(dialogs, items, ...)
 
     NavMeshAgent agent;
     Animator animator;
-    bool isWalking;
     Vector3 nextPosition = Vector3.zero;
 
     void Awake()
@@ -31,13 +30,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Change agent speed based on Z postition
+        //Change agent speed based on Z position
         agent.speed = (Mathf.Abs(transform.position.z / 10) + speedNearBackground);
-        //Change animation state
-        animator.SetBool("isWalking", isWalking);
 
-        //Stop player when close to postition
-        if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y - agent.baseOffset, transform.position.z), nextPosition) < agent.stoppingDistance*5 && isWalking)
+        //Stop player when close to position
+        if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y - agent.baseOffset, transform.position.z), nextPosition) < agent.stoppingDistance*5 && animator.GetBool("isWalking"))
         {
             StopPlayer();
         }
@@ -54,7 +51,8 @@ public class PlayerController : MonoBehaviour
             GameManager.ResetSelectedInteractableItem();
             agent.SetDestination(hit.point);
             nextPosition = hit.point;
-            isWalking = true;
+            //Change animation state
+            animator.SetBool("isWalking", true);
         }
     }
 
@@ -63,7 +61,8 @@ public class PlayerController : MonoBehaviour
         //If right mouse click hits interactable start moving player interactable pos
         agent.SetDestination(currentInteractable.transform.position);
         nextPosition = currentInteractable.transform.position;
-        isWalking = true;
+        //Change animation state
+        animator.SetBool("isWalking", true);
     }
 
     public void StopPlayer()
@@ -71,7 +70,8 @@ public class PlayerController : MonoBehaviour
         //Stop walking
         agent.ResetPath();
         agent.velocity = Vector3.zero;
-        isWalking = false;
+        //Change animation state
+        animator.SetBool("isWalking", false);
     }
 
     public void SetDescriptionText(string text)

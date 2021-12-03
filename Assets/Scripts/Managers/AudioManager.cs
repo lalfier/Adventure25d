@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
         playerSource.outputAudioMixerGroup = playerGroup;
         voiceSource.outputAudioMixerGroup = voiceGroup;
 
-        //Being playing the level audio
+        //Begin playing the level audio
         StartLevelAudio();
     }
 

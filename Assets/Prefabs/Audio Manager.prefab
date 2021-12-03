@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambientClip: {fileID: 0}
   musicClip: {fileID: 0}
-  doorStingClip: {fileID: 0}
   woodStepClips:
   - {fileID: 8300000, guid: 781ab33301f7d9842867a2970b9f8029, type: 3}
   - {fileID: 8300000, guid: 16a943bd4c9b2014e887102abc527138, type: 3}
@@ -54,8 +53,6 @@ MonoBehaviour:
   defaultStepClips:
   - {fileID: 8300000, guid: c5b6b029992db8f4289021b21b09dd86, type: 3}
   - {fileID: 8300000, guid: 74b691891b62f1046b174e200a23060e, type: 3}
-  - {fileID: 8300000, guid: 3f6ef45e03531a84294397df80b09da3, type: 3}
-  doorVoiceClip: {fileID: 0}
   ambientGroup: {fileID: 243375458998414286, guid: fbc5536644c39724a8b8b38c56b28343,
     type: 2}
   musicGroup: {fileID: 243230206115637112, guid: fbc5536644c39724a8b8b38c56b28343,

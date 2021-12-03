@@ -1035,11 +1035,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114568543676866764, guid: e7f10a5bf3341ee40bdd6e5a2e27f1be,
-        type: 3}
-      propertyPath: defaultStepClips.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7f10a5bf3341ee40bdd6e5a2e27f1be, type: 3}
 --- !u!1 &757802709
